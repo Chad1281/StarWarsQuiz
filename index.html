@@ -3,31 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
     <header>
         <a href="#scores">High Scores</a>
-        <div id="timer"></div>
+        <div id="timer">Time Left: 120</div>
     </header>
     <main>
+        <img id="yoda" src="./images/yoda_ls.png" alt="picture of Yoda holding a light saber">
         <div class="container">
-            <div id="question-container" class="hide">
-                <div id="question">Question</div>
-                <div id="choices" class="btn-grid">
-                    <button class="choice" id="a">A</button>
-                    <button class="choice" id="b">B</button>
-                    <button class="choice" id="c">C</button>
-                    <button class="choice" id="d">D</button>
-                </div>
-            </div>
+            <h2>Instructions, follow closely you will:</h2>
+            <ol>
+                <li>Each correct answer will add 20 seconds to the timer. </li>
+                <li>Each wrong answer will subtract 20 seconds from the timer. </li>
+                <li>The time left when you finish answering the questions will be your score. </li>
+                <li>If time runs out before you answer all of the questions, you lose.</li>                
+            </ol>
+            <button id="start">Start the quiz you must</button>
         </div>
-        <div class="controls">
-            <button id="start" class="start-btn btn">Start you must</button>
-            <button id="next-btn" class="next-btn btn hide">Next</button>
-        </div>
-        <div id="scores"></div>
+        <img id="darthVader" src="./images/darthVader.png" alt="picture of Darth Vader holding a light saber">
     </main>
     <script src="./script.js"></script>
 </body>
