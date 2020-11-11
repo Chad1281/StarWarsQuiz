@@ -39,7 +39,7 @@ main {
     padding: 0;
     margin: 20px;
     display: flex;
-    width: 100vw;
+    width: auto;
     min-height: 80vh;
     justify-content: center;
     justify-content: space-around;
@@ -58,14 +58,29 @@ main {
     font-size: 1.1rem;
 }
 
-.container h2 {
+.quizCon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quizCon h2 {
     margin: 10px 0 0 0;
     padding: 0;
 }
 
-#start {
+.ansConClass {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
     width: 180px;
     max-width: 80%;
+    height: auto;
     min-height: 80px;
     background-color: yellow;
     border-radius: 5px;
