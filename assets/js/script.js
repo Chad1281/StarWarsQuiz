@@ -1,136 +1,156 @@
+var unHide = document.createElement("div");
+var questCon = document.createElement("div");
+var ansCon = document.createElement("div");
+var questH2 = document.createElement("h2");
+var conBtn0 = document.createElement("button");
+var conBtn1 = document.createElement("button");
+var conBtn2 = document.createElement("button");
+var conBtn3 = document.createElement("button");
+var startBtn = document.getElementById("start");
+var hideOnStart = document.querySelector("#hideOnStart");
+var container = document.querySelector(".container");
 
-// var timeEl = document.querySelector("#timer");
-// var secondsLeft = 120;
-const startButton = document.getElementById("start");
-const questionContainerEl = document.getElementById("question-container");
-const questionEl = document.getElementById("question");
-// const choiceA = document.getElementById("a");
-// const choiceB = document.getElementById("b");
-// const choiceC = document.getElementById("c");
-// const choiceD = document.getElementById("d");
-const highScores = document.getElementById("scores");
-// const lastQuestion = questions.length -1;
-// let startQuestion = 0;
+let shuffledQuestions, currentQuestIndex
 
-startButton.addEventListener("click", startQuiz); 
+unHide.setAttribute("class", "hide");
+questCon.setAttribute("class", "quizCon");
+ansCon.setAttribute("class", "ansConClass");
 
-function startQuiz() {
-    // console.log('started');
-    startButton.classList.add("hide");
-    // currentQuestionIndex = 0;
-    questionContainerEl.classList.remove("hide");
-    setNextQuestion();
-}
+// questH2.textContent = "Question";
+// conBtn0.setAttribute("class", "btn");
+// conBtn1.setAttribute("class", "btn");
+// conBtn2.setAttribute("class", "btn");
+// conBtn3.setAttribute("class", "btn");
 
-function setNextQuestion() {
-    resetState();
-    showQuestion();
-}
-
-function showQuestion(question) {
-    questionEl.innerText = question.question;
-    question.choices.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerText = answer.text;
-        button.classList.add("btn");
-        if (answer.correct) {
-            button.dataset.correct = answer.correct
-        }
-        button.addEventListener("click", selectAnswer)
-        answerButtonsElement.appendChild(button);
-    })
-}
-
-function resetState() {
-    nextButton.classList.add("hide");
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-    }
-}
-
-function selectAnswer(e) {
-    const selectedButton = e.target;
-    const correct = selectedButton.dataset.correct;
-    setStatusClass(button, button.dataset.correct);
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct);
-    })
-}
-
-function setStatusClass(element, correct) {
-    clearStatusClass(element);
-    if (correct) {
-        element.classList.add("correct");
-    } 
-    else {
-        element.classList.add("wrong");
-    }
-}
+container.appendChild(unHide);
+unHide.appendChild(questCon);
+questCon.appendChild(questH2);
+questCon.appendChild(ansCon);
+// questCon.appendChild(conBtn0);
+// questCon.appendChild(conBtn1);
+// questCon.appendChild(conBtn2);
+// questCon.appendChild(conBtn3);
 
 const questions = [
     {
         question: "What year did the first Star Wars movie come out?",
-        choices: ["1970", "1976", "1977", "1981"]
+        choices: ["1970", "1976", "1977", "1981"],
         answer: "1977"
     },
     {
         question: "What is the name of the character played by Harrison Ford?",
-        choices: ["Obi-Wan Kenobi", "Luke Skywalker", "Darth Vader", "Han Solo"]
+        choices: ["Obi-Wan Kenobi", "Luke Skywalker", "Darth Vader", "Han Solo"],
         answer: "Han Solo"
     },
     {
         question: "Which actor is the voice of Darth Vader?",
-        choices: ["James Earl Jones", "Morgan Freeman", "Sean Connery", "Christopher Lee"]
+        choices: ["James Earl Jones", "Morgan Freeman", "Sean Connery", "Christopher Lee"],
         answer: "James Earl Jones"
     },
     {
         question: "How did Yoda die?", 
-        choices: ["Stabbed by Lightsaber", "Ship Explosion", "Planet Explosion", "Old Age"]
+        choices: ["Stabbed by Lightsaber", "Ship Explosion", "Planet Explosion", "Old Age"],
         answer: "Old Age"
     }, 
     {
         question: "How old was Yoda when he died?",
-        choices: ["900", "800", "650", "1000"]
+        choices: ["900", "800", "650", "1000"],
         answer: "900"
     },
     {
         question: "Who built C-3PO?",
-        choices: ["Luke Skywalker", "Anakin Skywalker", "Obi-Wan Kenobi", "Han Solo"]
+        choices: ["Luke Skywalker", "Anakin Skywalker", "Obi-Wan Kenobi", "Han Solo"],
         answer: "Anakin Skywalker"
     },
 ]
 
-choiceA.textContent = choices[0];
-choiceB.textContent = choices[1];
-choiceC.textContent = choices[2];
-choiceD.textContent = choices[3];
+// let choices = questions.choices;
 
-// function setTime() {
-//     var timerInterval = setInterval(function() {
-//       secondsLeft--;
-//       timeEl.textContent = "Time left:" + " " + secondsLeft;
-  
-//     //   if(secondsLeft === 0) {
-//     //     clearInterval(timerInterval);
-//     //     sendMessage();
-//     //   }
-  
-//     }, 1000);
-//   }
+startBtn.addEventListener("click", startQuiz); 
 
-// function renderQuestion() {
-//     let q = questions[startQuestion];
+function startQuiz() {
+    console.log("started");
+    hideOnStart.classList.add("hide");
+    unHide.classList.remove("hide");
+    shuffledQuestions = questions.sort(() => Math.random() - .5);
+    currentQuestIndex = 0
+    nextQuest();
+}
 
-//     question.innerHTML = "<p>"+ q.question +"</p>";
-//     choiceA.innerHTML = q.choiceA;
-//     choiceB.innerHTML = q.choiceB;
-//     choiceC.innerHTML = q.choiceC;
-//     choiceD.innerHTML = q.choiceD;
+function nextQuest() {
+    resetState();
+    showQuest(shuffledQuestions[currentQuestIndex]);
+}
+
+function showQuest(question) {
+    questH2.innerText = question.question
+    console.log(question.choices)
+    question.choices.forEach(choice => {
+        const button = document.createElement("button");
+        button.innerHTML = choice;
+        button.classList.add("btn");
+        var ansObj = question.answer;
+        if (ansObj) {
+            button.dataset.correct = ansObj;
+        }
+        button.addEventListener("click", selectAns);
+        button.addEventListener("click", () => {
+            currentQuestIndex++;
+            nextQuest();
+        })
+        ansCon.appendChild(button);
+        
+        
+        // function checkAns() {
+        //     if (button.innerHTML == question.answer) {
+        //         console.log("correct");
+        //         nextQuest();
+        //     }
+        //     else {
+        //         console.log("wrong");
+        //         nextQuest();
+        //     }
+        // }
+    });
+}
+
+function resetState() {
+    while (ansCon.firstChild) {
+        ansCon.removeChild
+        (ansCon.firstChild);
+    }
+}
+
+function selectAns(e) {
+    const selectedBtn = e.target;
+    console.log(selectedBtn);
+    const correct = selectedBtn.dataset.correct;
+    // setStatus(document.body, correct);
+    Array.from(questCon.children).forEach(button => {
+        setStatus(button, button.dataset.correct)
+    })
+}
+
+function setStatus(element, correct) {
+    // clearStatus(element);
+    if (correct) {
+        console.log("Correct");
+    }
+    else {console.log("Wrong")}
+}
+
+
+
+// for (i = 0; i < questions.length; i++) {
+//     // console.log(questions[i]);
+//     var questEl = (questions[i].question);
+//     var ansBtn0 = (questions[i].choices[0]);
+//     var ansBtn1 = (questions[i].choices[1]);
+//     var ansBtn2 = (questions[i].choices[2]);
+//     var ansBtn3 = (questions[i].choices[3]);
+//     questH2.innerHTML = questEl;
+//     conBtn0.innerHTML = ansBtn0;
+//     conBtn1.innerHTML = ansBtn1;
+//     conBtn2.innerHTML = ansBtn2;
+//     conBtn3.innerHTML = ansBtn3;
 // }
-
-// function showScores() {
-
-// }
-
-
-
