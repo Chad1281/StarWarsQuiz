@@ -2,10 +2,6 @@ var unHide = document.createElement("div");
 var questCon = document.createElement("div");
 var ansCon = document.createElement("div");
 var questH2 = document.createElement("h2");
-var conBtn0 = document.createElement("button");
-var conBtn1 = document.createElement("button");
-var conBtn2 = document.createElement("button");
-var conBtn3 = document.createElement("button");
 var startBtn = document.getElementById("start");
 var hideOnStart = document.querySelector("#hideOnStart");
 var container = document.querySelector(".container");
@@ -16,20 +12,10 @@ unHide.setAttribute("class", "hide");
 questCon.setAttribute("class", "quizCon");
 ansCon.setAttribute("class", "ansConClass");
 
-// questH2.textContent = "Question";
-// conBtn0.setAttribute("class", "btn");
-// conBtn1.setAttribute("class", "btn");
-// conBtn2.setAttribute("class", "btn");
-// conBtn3.setAttribute("class", "btn");
-
 container.appendChild(unHide);
 unHide.appendChild(questCon);
 questCon.appendChild(questH2);
 questCon.appendChild(ansCon);
-// questCon.appendChild(conBtn0);
-// questCon.appendChild(conBtn1);
-// questCon.appendChild(conBtn2);
-// questCon.appendChild(conBtn3);
 
 const questions = [
     {
@@ -63,8 +49,6 @@ const questions = [
         answer: "Anakin Skywalker"
     },
 ]
-
-// let choices = questions.choices;
 
 startBtn.addEventListener("click", startQuiz); 
 
@@ -138,8 +122,6 @@ function setStatus(element, correct) {
     }
     else {console.log("Wrong")}
 }
-
-
 
 // for (i = 0; i < questions.length; i++) {
 //     // console.log(questions[i]);
