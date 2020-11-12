@@ -5,6 +5,8 @@ var questH2 = document.createElement("h2");
 var startBtn = document.getElementById("start");
 var hideOnStart = document.querySelector("#hideOnStart");
 var container = document.querySelector(".container");
+var timeEl = document.querySelector("#timer");
+var secondsLeft = 60;
 
 let shuffledQuestions, currentQuestIndex
 
@@ -58,8 +60,32 @@ function startQuiz() {
     unHide.classList.remove("hide");
     shuffledQuestions = questions.sort(() => Math.random() - .5);
     currentQuestIndex = 0
+    setTime();
     nextQuest();
 }
+
+function setTime() {
+    var timerInterval = setInterval(function() {
+      secondsLeft--;
+      timeEl.textContent = "Time left: " + secondsLeft;
+  
+      if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        sendMessage();
+      }
+  
+    }, 1000);
+}
+
+function sendMessage() {
+    console.log("times up");
+    // timeEl.textContent = " ";
+  
+    // var imgEl = document.createElement("img");
+  
+    // imgEl.setAttribute("src", "images/image_1.jpg");
+    // mainEl.appendChild(imgEl);  
+  }
 
 function nextQuest() {
     resetState();
@@ -67,8 +93,8 @@ function nextQuest() {
 }
 
 function showQuest(question) {
-    questH2.innerText = question.question
-    console.log(question.choices)
+    questH2.innerText = question.question;
+    console.log(question.choices);
     question.choices.forEach(choice => {
         const button = document.createElement("button");
         button.innerHTML = choice;
