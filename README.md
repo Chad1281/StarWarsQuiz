@@ -4,7 +4,7 @@
 
 This is a quiz to test your knowledge of the Star Wars movies.
 
-![]()
+![Image of the starting page](https://github.com/Chad1281/star_wars_quiz/blob/main/assets/images/quiz-start.png)
 
 ## Deployment
 
