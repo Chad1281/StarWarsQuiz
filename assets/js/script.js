@@ -156,7 +156,14 @@ function setTime() {
         clearInterval(timerInterval); 
         endGame(); 
         sendMessage();
+        resetTimer();
       }
+      if (shuffledQuestions.length <= currentQuestIndex + 1) {
+        clearInterval(timerInterval); 
+        endGame(); 
+        sendMessage();
+        resetTimer();
+    }
     }, 1000);
 }
 
@@ -213,10 +220,6 @@ function selectAns(e) {
         console.log("wrong");
         secondsLeft -= 20;
     }
-    if (shuffledQuestions.length <= currentQuestIndex + 1) {
-        console.log("endgame");
-        endGame();
-    }
 }
 
 // hides question elements and unhides form elements
@@ -248,7 +251,6 @@ function showScores() {
     const li = document.createElement("li");
     li.innerHTML = highScore;
     scoreOl.appendChild(li);
-    // scoreOl.appendChild("li");
 }
 
 // starts game over
@@ -258,7 +260,7 @@ scoreBtn.addEventListener("click", playAgain);
 function playAgain() {
     unHideSB.classList.add("hide");
     hideOnStart.classList.remove("hide");
-    resetTimer();
+    // resetTimer();
 }
 
 // resets timer for new game

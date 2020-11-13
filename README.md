@@ -17,4 +17,4 @@ Access the page at [https://chad1281.github.io/star_wars_quiz/](https://chad1281
 3. Click the choice which you think is correct.
 4. After all of the questions are finished you will see your score and can save it by entering your name and hitting submit.
 
-![]()# star_wars_quiz
+![Image of the questions with multiple choice answers](https://github.com/Chad1281/star_wars_quiz/blob/main/assets/images/question-container.png)# star_wars_quiz
