@@ -265,6 +265,6 @@ function playAgain() {
 
 // resets timer for new game
 function resetTimer() {
-    var secondsLeft = 60;
+    secondsLeft = 60;
     timeEl.textContent = "Time Left: " + secondsLeft;
 }
