@@ -8,7 +8,7 @@ This is a quiz to test your knowledge of the Star Wars movies.
 
 ## Deployment
 
-Access the page at [https://chad1281.github.io/star_wars_quiz/](https://chad1281.github.io/star_wars_quiz/)
+Access the page at [https://chad1281.github.io/StarWarsQuiz/](https://chad1281.github.io/StarWarsQuiz/)
 
 ## Utilization
 
